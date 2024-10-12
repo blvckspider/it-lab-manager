@@ -2,7 +2,6 @@
     import editIcon from '$lib/assets/icons/edit.svg';
     import binIcon from '$lib/assets/icons/bin.svg';
     export let data: any;
-    console.log(data);
 </script>
 
  
@@ -16,17 +15,17 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Quantity</th>
-                <th>Position</th>
+                <th>Location</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            {#each data.data as user}
+            {#each data.data as object}
                 <tr>
-                    <td class="product-id"> { user.id } </td>
-                    <td class="product-name" > { user.name } </td>
-                    <td> <span> Quantity: </span> { user.quantity } </td>
-                    <td> <span> Position: </span> { user.position } </td>
+                    <td class="product-id"> {object.id} </td>
+                    <td class="product-name"> <a href={`/dashboard/${object.id}`}>{ object.name }</a> </td>
+                    <td> <span> Quantity: </span> { object.quantity } </td>
+                    <td> <span> Location: </span> { object.position } </td>
                     <td class="actions-cell center-flex row">
                         <div class="container center-flex">
                             <button class="button center-grid"> <img src={editIcon} alt=""> </button>

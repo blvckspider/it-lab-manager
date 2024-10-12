@@ -1,8 +1,8 @@
 # IT LAB MANAGER
-IT Lab Manager is a web application for schools to manage laboratory materials, allowing teachers and staff to monitor inventory and handle material requests. 🏫
+IT Lab Manager is a web application for schools to manage laboratory materials, allowing teachers and staff to monitor inventory and handle material requests.
 
 
-## Technologies used 🌐
+## Technologies used
 - **Frontend & Backend**: Svelte/SvelteKit
 - **Database**: MySQL
 

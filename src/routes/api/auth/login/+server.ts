@@ -16,14 +16,14 @@ export const POST: RequestHandler = async ({ request }) => {
             
             const cookieOptions = {
                 httpOnly: true,
-                secure: process.env.NODE_ENV === 'production', // Solo su HTTPS in produzione
-                maxAge: 3600, // Durata del cookie in secondi (1 ora)
-                path: '/' // Visibile su tutto il sito
+                secure: process.env.NODE_ENV === 'production', // only on HTTPS in production
+                maxAge: 3600, // cookie duration in seconds (1 hour)
+                path: '/' // visible throughout the site
             };
             const serializedCookie = cookie.serialize('it_lab_manager_token', token, cookieOptions);
 
             return json({ token }, {
-                headers: {'Set-Cookie': serializedCookie} // Imposta il cookie nella risposta
+                headers: {'Set-Cookie': serializedCookie} // sets the cookie in the response
             });
         }
 

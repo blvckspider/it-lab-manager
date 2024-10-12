@@ -22,9 +22,11 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"buffer": "^6.0.3",
 		"cookie": "^1.0.1",
 		"dotenv": "^16.4.5",
 		"mysql2": "^3.11.3",
+		"process": "^0.11.10",
 		"uuid": "^10.0.0"
 	}
 }
