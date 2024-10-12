@@ -39,6 +39,10 @@
 
 </div>
 
+<button class="floating center-flex">
+    <a href="/dashboard/add"> + </a>
+</button>
+
 
 <style>
 
@@ -84,6 +88,18 @@
         .product-name{font-weight: bold;}
     }
 
+
+    button.floating{
+        width: 45px; height: 45px;
+        position: absolute;
+        right: 20px; bottom: 20px;
+        padding: 10px;
+        background: var(--axolotl);
+        border-radius: 50%;
+        font-size: 35px;
+        transition: .25s;
+    }
+    button.floating:hover{scale: 1.1; transition: .25s;}
 
 
 </style>

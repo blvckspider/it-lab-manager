@@ -24,7 +24,7 @@
 
 </script>
 
-<main id="main">
+<main id="main" class="column">
     <form class="center-flex column" on:submit={handleLogin}>
         <div class="username center-flex row">
             <img src={userIcon} alt="user icon">
@@ -45,7 +45,7 @@
         </div>
 
         {#if errorMessage}
-            <div class="error-message">{errorMessage}</div>
+        <p class="error-message">{ errorMessage }</p>
         {/if}
 
         <button type="submit"> LOGIN </button>
