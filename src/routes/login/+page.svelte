@@ -4,9 +4,7 @@
 
     let [username, password, errorMessage] = ['', '', ''];
 
-    const handleLogin = async (event: Event) => {
-        event.preventDefault();
-
+    const login = async () => {
         const response = await fetch('/api/auth/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -16,36 +14,25 @@
         const data = await response.json();
         errorMessage = response.ok ? '' : data.error || 'Login failed';
 
-        if(response.ok){
-            console.log('Login successful!', data);
-            window.location.href = '/dashboard';
-        }
+        if(response.ok){ window.location.href = '/dashboard'; }
     };
 
 </script>
 
 <main id="main" class="column">
-    <form class="center-flex column" on:submit={handleLogin}>
+    <form class="center-flex column" on:submit={login}>
         <div class="username center-flex row">
             <img src={userIcon} alt="user icon">
-            <input 
-                type="text" 
-                placeholder="Username" 
-                bind:value={username}
-                required>
+            <input type="text" placeholder="Username" bind:value={username} required>
         </div>
 
         <div class="password center-flex row">
             <img src={lockIcon} alt="lock icon">
-            <input 
-                type="password" 
-                placeholder="Password" 
-                bind:value={password}
-                required>
+            <input type="password" placeholder="Password" bind:value={password} required>
         </div>
 
         {#if errorMessage}
-        <p class="error-message">{ errorMessage }</p>
+            <p class="error-message">{ errorMessage }</p>
         {/if}
 
         <button type="submit"> LOGIN </button>

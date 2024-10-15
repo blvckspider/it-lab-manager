@@ -7,6 +7,7 @@ export const POST: RequestHandler = async ({ request }) => {
     try{
         const { username, password } = await request.json();
 
+        // to be implemented: password hashing
         const query = 'SELECT * FROM users WHERE username = ? AND password = ?';
         const values = [username, password];
         const rows = await queryDatabase(query, values);

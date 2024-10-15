@@ -4,6 +4,7 @@ import cookie from 'cookie';
 
 export async function load({ request }: any){
 
+  // to be implemented: check for token validity
   const cookies = cookie.parse(request.headers.get('cookie') || '');
   if(!cookies.it_lab_manager_token){ throw redirect(302, '/login'); } // if token doesn't exist
 

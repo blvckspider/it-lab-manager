@@ -23,13 +23,7 @@ export async function mysqlconnFn(): Promise<mysql.PoolConnection> {
 export async function queryDatabase(query: string, values: any[]): Promise<any> {
   const connection = await mysqlconnFn();
   
-  try{
-    const [rows] = await connection.query(query, values);
-    return rows;
-  }
-  catch(error){
-    console.error('Error executing query:', error);
-    throw error;
-  }
+  try{ const [rows] = await connection.query(query, values); return rows; }
+  catch(error){ console.error('Error executing query:', error); throw error; }
   finally{ connection.release(); }
 }
