@@ -24,3 +24,24 @@ To create a production version of your app:
 ```bash
 npm run build
 ```
+
+## How to set up the database
+Requirements: mysql
+
+After installing mysql, log into the shell as root and enter your password:
+```bash
+mysql -u [user] -p
+```
+
+Create the database and exit:
+```mysql
+CREATE DATABASE it_lab_manager;
+```
+```mysql
+EXIT;
+```
+
+Import the example's queries into the database with:
+```bash
+mysql -u [user] -p it_lab_manager < database.sql
+```
