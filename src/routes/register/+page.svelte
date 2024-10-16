@@ -1,20 +1,21 @@
 <script lang="ts">
     import userIcon from '$lib/assets/icons/user.svg';
+    import emailIcon from '$lib/assets/icons/envelope.svg';
     import lockIcon from '$lib/assets/icons/lock.svg';
 
-    let [username, password, errorMessage] = ['', '', ''];
+    let [username, email, password, errorMessage] = ['', '', '', ''];
 
     const login = async () => {
-        const response = await fetch('/api/auth/login', {
+        const response = await fetch('/api/auth/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password }),
+            body: JSON.stringify({ username, email, password }),
         });
 
         const data = await response.json();
-        errorMessage = response.ok ? '' : data.error || 'Login failed';
+        errorMessage = response.ok ? '' : data.error || 'Registration failed';
 
-        if(response.ok){ window.location.href = '/dashboard'; }
+        if(response.ok){ window.location.href = '/login'; }
     };
 
 </script>
@@ -26,6 +27,11 @@
             <input type="text" placeholder="Username" bind:value={username} required>
         </div>
 
+        <div class="email center-flex row">
+            <img src={emailIcon} alt="email icon">
+            <input type="text" placeholder="Email" bind:value={email} required>
+        </div>
+
         <div class="password center-flex row">
             <img src={lockIcon} alt="lock icon">
             <input type="password" placeholder="Password" bind:value={password} required>
@@ -35,7 +41,7 @@
             <p class="error-message">{ errorMessage }</p>
         {/if}
 
-        <button type="submit"> LOGIN </button>
+        <button type="submit"> REGISTER </button>
         <a href="/register" class="register-redirection">Haven't an account yet? Sign up</a>
     </form>
 </main>
