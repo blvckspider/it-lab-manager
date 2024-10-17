@@ -1,7 +1,7 @@
-import { redirect, json } from '@sveltejs/kit';
+import { json } from '@sveltejs/kit';
 import cookie from 'cookie';
 
-export function GET({ request }) {
+export async function GET({ request }) {
     const cookies = cookie.parse(request.headers.get('cookie') || '');
 
     // to be implemented: check for token validity

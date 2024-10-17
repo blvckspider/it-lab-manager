@@ -1,12 +1,7 @@
 import { queryDatabase } from "$lib/database"; // import the database connection's function
-import { redirect } from '@sveltejs/kit';
 
-export async function load({ request }: any){
+export async function load(){
 
-  const response = await fetch('/api/auth/checkToken');
-  const data = await response.json();
-  if(data.redirect){ throw redirect(302, data.redirect); }
-  
   try{
     const results = await queryDatabase("SELECT * FROM materials;", []);
     return { data: results };
