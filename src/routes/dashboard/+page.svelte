@@ -1,7 +1,28 @@
 <script lang="ts">
     import editIcon from '$lib/assets/icons/edit.svg';
     import binIcon from '$lib/assets/icons/bin.svg';
+    import searchIcon from '$lib/assets/icons/search.svg';
     export let data: any;
+
+    let searchBar: boolean = false;
+    let searchQuery: string = '';
+    let filteredData = data.data;
+
+    function showSearchBar(){ searchBar = !searchBar; }
+
+    function filterData() {
+        if(searchQuery.trim() === ''){ filteredData = data.data; }
+        else {
+            filteredData = data.data.filter(object =>
+                object.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                object.id.toString().includes(searchQuery) ||
+                object.laboratory.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                ('locker ' + object.locker).toString().includes(searchQuery.toLowerCase()) ||
+                ('shelf ' + object.shelf).toString().includes(searchQuery.toLowerCase()) ||
+                object.note.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+        }
+    }
 
     async function deleteObject(id){
         try{
@@ -23,6 +44,12 @@
 
  
 <h1 id="title"> DASHBOARD </h1>
+<div class="search-container center-flex">
+    {#if searchBar}
+        <input type="text" placeholder="Search..." bind:value={searchQuery} on:input={filterData}>
+    {/if}
+    <button class="search" on:click={showSearchBar}> <img src={searchIcon} alt=""> </button>
+</div>
 
 <div class="table-container column">
 
@@ -45,7 +72,7 @@
                 </tr>
             </thead>
             <tbody>
-                {#each data.data as object}
+                {#each filteredData as object}
                     <tr>
                         <td class="product-id"> { object.id } </td>
                         <td class="product-name"> { object.name } </td>
@@ -76,6 +103,17 @@
 <style>
 
     #title{width: 100%; height: 100px; text-align: center; padding: 25px 0;}
+
+    .search-container input{
+        width: 80%; height: 45px;
+        padding: 10px 20px;
+        color: var(--almond);
+        border-radius: 25px;
+        background: var(--black-olive);
+    }
+    button.search{width: 30px; height: 30px; position: absolute; top: 35px; right: 25px; transition: .25s;}
+    button.search:hover{scale: 1.1; transition: .25s;}
+    
     .empty-advice{text-align: center;}
 
     table{margin: 25px;}
@@ -111,6 +149,10 @@
         td{display: flex;}
         td span{display: block; margin-right: 5px;}
         .product-name{font-weight: bold;}
+    }
+
+    @media screen and (max-width: 350px){
+        #title{text-align: left; padding-left: 25px;}
     }
 
     button.floating{

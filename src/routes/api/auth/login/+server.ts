@@ -18,7 +18,7 @@ export const POST: RequestHandler = async ({ request }) => {
             const cookieOptions = {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production', // only on HTTPS in production
-                maxAge: 3600, // cookie duration in seconds (1 hour)
+                maxAge: 7200, // cookie duration in seconds
                 path: '/' // visible throughout the site
             };
             const serializedCookie = cookie.serialize('it_lab_manager_token', token, cookieOptions);

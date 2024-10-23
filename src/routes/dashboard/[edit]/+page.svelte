@@ -51,9 +51,9 @@
     <input type="text" placeholder="Name" on:input={validateFields} bind:value={object.name} required>
     <input type="number" placeholder="Quantity" on:input={validateFields} bind:value={object.quantity} required>
     <textarea placeholder="Note" on:input={validateFields} bind:value={object.note}></textarea>
-    <input type="text" placeholder="Laboratory" on:input={validateFields} bind:value={laboratory} required>
-    <input type="number" placeholder="Locker" on:input={validateFields} bind:value={locker} required>
-    <input type="number" placeholder="Shelf" on:input={validateFields} bind:value={shelf} required>
+    <input type="text" placeholder="Laboratory" on:input={validateFields} bind:value={object.laboratory} required>
+    <input type="number" placeholder="Locker" on:input={validateFields} bind:value={object.locker} required>
+    <input type="number" placeholder="Shelf" on:input={validateFields} bind:value={object.shelf} required>
 
     <div class="controls row">
       <button type="button" on:click={goBack}> Discard </button>
