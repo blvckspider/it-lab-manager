@@ -1,15 +1,17 @@
 <script lang="ts">
   export let data;
   const object = data.results[0];
-  let [name, quantity, note, location] = [object.name, object.quantity, object.note, object.location];
+  let [name, quantity, note, laboratory, locker, shelf] = [object.name, object.quantity, object.note, object.laboratory, object.locker, object.shelf];
   let isValid: boolean = false;
 
   function goBack(){ window.history.back(); }
 
   function validateFields() {
     isValid = name.trim() !== '' &&
-              Number.isInteger(quantity) && quantity > 0
-              && location.trim() !== '';
+      Number.isInteger(parseInt(quantity)) && parseInt(quantity) > 0
+      && laboratory.trim() !== ''
+      && Number.isInteger(parseInt(locker)) && parseInt(locker) > 0
+      && Number.isInteger(parseInt(shelf)) && parseInt(shelf) > 0;
   }
 
   async function editObject(){
@@ -18,7 +20,9 @@
       name: object.name,
       note: object.note,
       quantity: object.quantity,
-      location: object.location
+      laboratory: object.laboratory,
+      locker: object.locker,
+      shelf: object.shelf
     };
 
     validateFields();
@@ -47,7 +51,9 @@
     <input type="text" placeholder="Name" on:input={validateFields} bind:value={object.name} required>
     <input type="number" placeholder="Quantity" on:input={validateFields} bind:value={object.quantity} required>
     <textarea placeholder="Note" on:input={validateFields} bind:value={object.note}></textarea>
-    <input type="text" placeholder="Location" on:input={validateFields} bind:value={object.location} required>
+    <input type="text" placeholder="Laboratory" on:input={validateFields} bind:value={laboratory} required>
+    <input type="number" placeholder="Locker" on:input={validateFields} bind:value={locker} required>
+    <input type="number" placeholder="Shelf" on:input={validateFields} bind:value={shelf} required>
 
     <div class="controls row">
       <button type="button" on:click={goBack}> Discard </button>

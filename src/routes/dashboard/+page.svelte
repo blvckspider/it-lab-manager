@@ -37,8 +37,10 @@
                     <th> ID </th>
                     <th> Name </th>
                     <th> Quantity </th>
-                    <th> Location </th>
                     <th> Note </th>
+                    <th> Laboratory </th>
+                    <th> Locker </th>
+                    <th> Shelf </th>
                     <th> Actions </th>
                 </tr>
             </thead>
@@ -47,9 +49,11 @@
                     <tr>
                         <td class="product-id"> { object.id } </td>
                         <td class="product-name"> { object.name } </td>
-                        <td> <span> Quantity: </span> { object.quantity } </td>
-                        <td> <span> Location: </span> { object.location } </td>
+                        <td class="product-quantity"> <span> Quantity: </span> { object.quantity } </td>
                         <td> <span> Note: </span> {@html object.note.replace(/;/g, '<br>') } </td>
+                        <td> <span> Laboratory: </span> { object.laboratory } </td>
+                        <td class="product-locker"> <span> locker: </span> { object.locker } </td>
+                        <td class="product-shelf"> <span> Shelf: </span> { object.shelf } </td>
                         <td class="actions-cell center-flex row">
                             <div class="container center-flex">
                                 <button class="button center-flex"> <a href={`/dashboard/${object.id}`}> <img src={editIcon} alt="edit"> </a> </button>
@@ -92,8 +96,12 @@
     }
     .actions-cell button:hover{scale: 1.1; transition: .25s;}
 
+    .product-id, .product-quantity, .product-locker, .product-shelf{
+        text-align: center;
+    }
 
-    @media screen and (max-width: 535px){
+
+    @media screen and (max-width: 625px){
         .table-container{align-items: center;}
         tbody tr{width: 90vw; display: flex; flex-direction: column; margin-bottom: 10px;}
         thead{display: none;}

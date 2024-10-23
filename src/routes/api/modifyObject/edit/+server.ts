@@ -5,11 +5,11 @@ export const POST: RequestHandler = async ({ request }) => {
   const mysqlconn = await mysqlconnFn();
 
   const data = await request.json();
-  const { id, name, quantity, note, location } = data;
+  const { id, name, quantity, note, laboratory, locker, shelf } = data;
 
   try{
-    const query = "UPDATE materials SET name = ?, quantity = ?, note = ?, location = ? WHERE id = ?;";
-    await mysqlconn.query(query, [name, quantity, note, location, id]);
+    const query = "UPDATE materials SET name = ?, quantity = ?, note = ?, laboratory = ?, locker = ?, shelf = ? WHERE id = ?;";
+    await mysqlconn.query(query, [name, quantity, note, laboratory, locker, shelf, id]);
 
     return new Response(JSON.stringify({ message: 'Record aggiornato con successo!' }), {
       status: 200,

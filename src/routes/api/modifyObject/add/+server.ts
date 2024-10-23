@@ -5,18 +5,18 @@ export const POST: RequestHandler = async ({ request }) => {
   const mysqlconn = await mysqlconnFn();
 
   const data = await request.json();
-  const { name, quantity, note, location } = data;
+  const { name, quantity, note, laboratory, locker, shelf } = data;
 
-  if (!name || quantity === undefined || !location) {
-    return new Response(JSON.stringify({ message: 'Nome, quantità e posizione sono richiesti.' }), {
+  if (!name || quantity === undefined || !laboratory || locker === undefined || shelf === undefined){
+    return new Response(JSON.stringify({ message: 'Valori inseriti non validi.' }), {
       status: 400,
       headers: { 'Content-Type': 'application/json' }
     });
   }
 
   try {
-    const query = "INSERT INTO materials (name, quantity, note, location) VALUES (?, ?, ?, ?);";
-    await mysqlconn.query(query, [name, quantity, note, location]);
+    const query = "INSERT INTO materials (name, quantity, note, laboratory, locker, shelf) VALUES (?, ?, ?, ?, ?, ?);";
+    await mysqlconn.query(query, [name, quantity, note, laboratory, locker, shelf]);
 
     return new Response(JSON.stringify({ message: 'Record inserted successfully!' }), {
       status: 201,

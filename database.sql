@@ -25,7 +25,9 @@ CREATE TABLE IF NOT EXISTS materials (
 	name VARCHAR(255) NOT NULL UNIQUE,
 	quantity INT NOT NULL DEFAULT 1,
 	note VARCHAR(255),
-	location VARCHAR(255) NOT NULL
+	laboratory VARCHAR(255) NOT NULL,
+	locker INT NOT NULL,
+	shelf INT NOT NULL
 );
 
 -- INSERT INTO materials (name, quantity, note, location)

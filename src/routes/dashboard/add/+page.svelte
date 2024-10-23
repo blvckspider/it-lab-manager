@@ -1,17 +1,19 @@
 <script lang="ts">
-    let [name, quantity, note, location] = ['', 1, '', ''];
+    let [name, quantity, note, laboratory, locker, shelf] = ['', undefined, '', '', '', undefined, undefined];
     let isValid: boolean = false;
 
     function goBack(){ window.history.back(); }
 
     function validateFields() {
         isValid = name.trim() !== '' &&
-                Number.isInteger(quantity) && quantity > 0
-                && location.trim() !== '';
+            Number.isInteger(parseInt(quantity)) && parseInt(quantity) > 0
+            && laboratory.trim() !== ''
+            && Number.isInteger(parseInt(locker)) && parseInt(locker) > 0
+            && Number.isInteger(parseInt(shelf)) && parseInt(shelf) > 0;
     }
 
     async function addObject(event) {
-        const updatedData = { name, quantity, note, location };
+        const updatedData = { name, quantity, note, laboratory, locker, shelf };
 
         validateFields();
         if(!isValid){ return; }
@@ -41,7 +43,9 @@
       <input type="text" placeholder="Name" on:input={validateFields} bind:value={name} required>
       <input type="number" placeholder="Quantity" on:input={validateFields} bind:value={quantity} required min="1">
       <textarea placeholder="Note" on:input={validateFields} bind:value={note}></textarea>
-      <input type="text" placeholder="Location" on:input={validateFields} bind:value={location} required>
+      <input type="text" placeholder="Laboratory" on:input={validateFields} bind:value={laboratory} required>
+      <input type="number" placeholder="Locker" on:input={validateFields} bind:value={locker} required>
+      <input type="number" placeholder="Shelf" on:input={validateFields} bind:value={shelf} required>
 
       <div class="controls row">
           <button type="button" on:click={goBack}> Discard </button>
