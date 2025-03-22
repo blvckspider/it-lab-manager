@@ -28,20 +28,17 @@ npm run build
 ## How to set up the database
 Requirements: mysql
 
-After installing mysql, log into the shell as root and enter your password:
+After installing mysql, import the database by running the following command. Log into the shell as root and enter your password:
 ```bash
-mysql -u [user] -p
+mysql -u [user] -p < database.sql
 ```
 
-Create the database and exit:
-```mysql
-CREATE DATABASE it_lab_manager;
-```
-```mysql
-EXIT;
-```
-
-Import the example's queries into the database with:
-```bash
-mysql -u [user] -p it_lab_manager < database.sql
+## Set up environment variables
+Then set up environment variables by creating a `.env` file in the root directory of the project and adding the following lines substituting your own values:
+```plaintext
+DB_HOST="localhost"
+DB_NAME="it_lab_manager"
+DB_USER=[user]
+DB_PASSWORD=[password]
+NODE_ENV=[mode] # development or production
 ```
