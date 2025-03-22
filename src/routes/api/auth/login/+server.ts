@@ -14,7 +14,6 @@ export const POST: RequestHandler = async ({ request }) => {
 
         if (rows.length > 0) {
             const user = rows[0];
-
             const passwordMatch = await bcrypt.compare(password, user.password);
 
             if (passwordMatch) {
